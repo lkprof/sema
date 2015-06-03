@@ -27,9 +27,9 @@ start_time = time.time()
 # generate result
 def svm():
     #load data
-    x_train,y_train=load_svmlight_file("D:/traindata/12trainset")
+    x_train,y_train=load_svmlight_file("12trainset")
     x_train.todense()
-    x_test,y_test=load_svmlight_file("D:/traindata/12testdata")
+    x_test,y_test=load_svmlight_file("12testdata")
     x_test.todense()
     sk=SelectKBest(f_classif,9).fit(x_train,y_train)
     x_new=sk.transform(x_train)
@@ -47,7 +47,7 @@ def svm():
         for st in y_pred.tolist():
             fw.write(str(st)+'\n')
     print(np.array(y_pred).shape)
-    
+
     target_names=['0','1','2','3']
     #result
     #sum_y = np.sum((np.array(y_pred)-np.array(y_test))**2)
@@ -91,7 +91,7 @@ def test():
     print(classification_report(y_test,y_pred,target_names=target_names))
     print("sougouVal: ",float(sum_y)/y_pred.shape[0])
     print(time.time()-start_time)
-    
+
     #scores=c_v.cross_val_score(ovrclf,x_train,y_train,cv=sfk,scoring='accuracy')
     #print(scores)
 
@@ -100,7 +100,7 @@ def score_func(y_pred,y_test):
     sougouVal=float(sum_y)/y_pred.shape[0]
     return sougouVal
 
-    
+
 if __name__ == '__main__':
     svm()
     #test()
